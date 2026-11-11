@@ -1,0 +1,103 @@
+/* Paleta "planta técnica". Âmbar: só mensagem em trânsito e passo ativo.
+   Verde: só "em produção". Fio: só divisórias (contraste baixo de propósito). */
+:root {
+  color-scheme: light dark;
+  --fundo: #edf1f5;
+  --texto: #16264a;
+  --texto-2: #455370;
+  --fio: #b9c4d3;
+  --traco: #6c778e;
+  --cobalto: #1f4fd1;
+  --ambar: #8f5200;
+  --verde: #1e7a4c;
+
+  --titulos: 'Bricolage Grotesque Variable', system-ui, sans-serif;
+  --mono: 'IBM Plex Mono', ui-monospace, 'Cascadia Mono', monospace;
+  --margem: clamp(1rem, 4vw, 3rem);
+  --largura: 72rem;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --fundo: #16264a;
+    --texto: #e6ecf5;
+    --texto-2: #b8c0cf;
+    --fio: #3a4d75;
+    --traco: #939db1;
+    --cobalto: #9db8ff;
+    --ambar: #ffb84d;
+    --verde: #6fd3a0;
+  }
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+body {
+  margin: 0;
+  background: var(--fundo);
+  color: var(--texto);
+  font-family: var(--titulos);
+  font-size: 1.0625rem;
+  line-height: 1.55;
+}
+
+h1,
+h2,
+h3,
+h4,
+p,
+ul,
+ol,
+dl,
+dd {
+  margin: 0;
+}
+
+ul,
+ol {
+  padding: 0;
+  list-style: none;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  line-height: 1.1;
+  text-wrap: balance;
+}
+
+a {
+  color: var(--cobalto);
+  text-underline-offset: 0.2em;
+}
+
+:focus-visible {
+  outline: 2px solid var(--cobalto);
+  outline-offset: 3px;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+[id] {
+  scroll-margin-top: 1.5rem;
+}
