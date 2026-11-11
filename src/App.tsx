@@ -1,4 +1,5 @@
 import { Abertura } from './components/Abertura';
+import { Anatomia } from './components/Anatomia';
 import { CasoFlow } from './components/CasoFlow';
 import { ComoTrabalho } from './components/ComoTrabalho';
 import { Contato } from './components/Contato';
@@ -12,6 +13,7 @@ export function App() {
       <Abertura />
       <main>
         <CasoFlow />
+        <Anatomia />
         <PercursoAgente />
         <OutrosProdutos />
         <ComoTrabalho />

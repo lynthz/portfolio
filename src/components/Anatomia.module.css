@@ -1,0 +1,188 @@
+.anatomia {
+  border-top: 1px solid var(--fio);
+}
+
+.palco {
+  display: grid;
+  gap: 3rem;
+  max-width: var(--largura);
+  margin-inline: auto;
+  padding: clamp(4rem, 9vw, 6rem) var(--margem);
+}
+
+.titulo {
+  font-size: clamp(2rem, 4.2vw, 3.1rem);
+  font-weight: 750;
+  letter-spacing: -0.03em;
+}
+
+.intro {
+  max-width: 30em;
+  margin-top: 1rem;
+  color: var(--texto-2);
+  font-size: 1.125rem;
+}
+
+.lista {
+  margin-top: 2rem;
+  border-bottom: 1px solid var(--fio);
+}
+
+.item,
+.itemAtivo {
+  display: grid;
+  grid-template-columns: 1.75rem 1fr;
+  gap: 1rem;
+  padding: 0.85rem 0.75rem;
+  border-top: 1px solid var(--fio);
+  border-left: 3px solid transparent;
+  color: var(--texto-2);
+  transition:
+    color 0.3s,
+    background-color 0.3s,
+    border-color 0.3s;
+}
+
+.itemAtivo {
+  border-left-color: var(--texto);
+  background: var(--painel);
+  color: var(--texto);
+}
+
+.item h3,
+.itemAtivo h3 {
+  color: var(--texto);
+  font-size: 1.0625rem;
+  font-weight: 650;
+}
+
+.icone {
+  width: 1.5rem;
+  margin-top: 0.1rem;
+  fill: none;
+  stroke: currentcolor;
+  stroke-width: 2.5;
+}
+
+.itemAtivo .icone {
+  fill: currentcolor;
+}
+
+.itens {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.1rem 1.25rem;
+  margin-top: 0.2rem;
+  font-family: var(--mono);
+  font-size: 0.8125rem;
+}
+
+/* Pilha em perspectiva. Estado padrão = explodida, que é o que fica sem animação. */
+.cena {
+  /* A pilha aberta ocupa cerca de 1,7 x a largura da placa na vertical: o tamanho segue a tela. */
+  --largura-placa: min(24rem, 66vw);
+  --vao: calc(var(--largura-placa) * 0.3);
+
+  display: grid;
+  place-items: center;
+  height: calc(var(--largura-placa) * 1.8);
+  perspective: 1300px;
+  perspective-origin: 50% 50%;
+}
+
+.inclinacao,
+.giro {
+  transform-style: preserve-3d;
+}
+
+.inclinacao {
+  /* Vista lateral oblíqua: inclina, vira de lado e gira no plano. */
+  transform: rotateY(-18deg) rotateX(64deg);
+}
+
+.giro {
+  position: relative;
+  width: var(--largura-placa);
+  aspect-ratio: 260 / 150;
+  transform: rotate(-38deg);
+}
+
+.camada {
+  position: absolute;
+  inset: 0;
+  transform: translateZ(calc((var(--meio) - var(--i)) * var(--vao)));
+  transform-style: preserve-3d;
+}
+
+.placa,
+.placaAtiva {
+  position: absolute;
+  inset: 0;
+  border: 1.5px solid var(--traco);
+  background-color: color-mix(in srgb, var(--painel) 70%, transparent);
+  background-image:
+    linear-gradient(var(--fio) 1px, transparent 1px),
+    linear-gradient(90deg, var(--fio) 1px, transparent 1px);
+  background-size: 20px 20px;
+  transition:
+    transform 0.5s var(--suave),
+    border-color 0.3s,
+    background-color 0.3s;
+}
+
+.placaAtiva {
+  border-width: 2.5px;
+  border-color: var(--texto);
+  background-color: color-mix(in srgb, var(--texto) 24%, var(--painel));
+  box-shadow: 0 0 0 6px color-mix(in srgb, var(--texto) 20%, transparent);
+  transform: translate3d(calc(var(--largura-placa) * 0.14), calc(var(--largura-placa) * -0.04), 0);
+}
+
+.nomeCamada {
+  position: absolute;
+  top: 0.5rem;
+  left: 0.65rem;
+  color: var(--texto);
+  font-family: var(--mono);
+  font-size: max(0.8125rem, calc(var(--largura-placa) * 0.035));
+}
+
+.formas {
+  position: absolute;
+  inset: 0;
+  fill: none;
+  stroke: var(--texto);
+  stroke-width: 2.5;
+}
+
+.placaAtiva .formas {
+  fill: var(--texto);
+}
+
+@media (min-width: 60rem) {
+  .palco {
+    grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.4fr);
+    align-items: center;
+  }
+
+  .cena {
+    --largura-placa: min(36rem, 38vw, 45vh);
+    --vao: calc(var(--largura-placa) * 0.32);
+
+    height: min(100vh, calc(var(--largura-placa) * 1.85));
+  }
+}
+
+/* Com movimento, o trilho alto dá espaço para a pilha abrir enquanto a página rola. */
+@media (min-width: 60rem) and (prefers-reduced-motion: no-preference) {
+  .trilho {
+    height: 320vh;
+  }
+
+  .palco {
+    position: sticky;
+    top: 0;
+    min-height: 100vh;
+    padding-block: 2rem;
+  }
+}
