@@ -1,0 +1,30 @@
+/* A caixa (proporção) vem do contêiner, a mesma do SVG: a troca não desloca o layout. */
+.cena {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.rotulo,
+.rotuloAtivo {
+  width: 9rem;
+  color: var(--texto);
+  font-family: var(--mono);
+  font-size: 0.8125rem;
+  line-height: 1.2;
+  text-align: center;
+  pointer-events: none;
+  user-select: none;
+}
+
+.rotuloAtivo {
+  font-weight: 500;
+}
+
+.plano {
+  color: var(--texto-2);
+  font-family: var(--titulos);
+  font-size: 0.8125rem;
+  white-space: nowrap;
+  pointer-events: none;
+}

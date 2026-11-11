@@ -14,7 +14,7 @@ test('campos PENDENTES vazios não aparecem', () => {
   for (const metrica of flow.metricas.filter((m) => !m.valor)) {
     expect(texto).not.toContain(metrica.rotulo);
   }
-  expect(texto).not.toMatch(/PENDENTE|undefined|em breve|Agente usado|Tempo de construção/);
+  expect(texto).not.toMatch(/PENDENTE|undefined|em breve|Como este site foi feito/);
   expect(html).not.toContain('<dd></dd>');
   if (flow.capturas.length === 0) expect(html).not.toContain('<img');
 });

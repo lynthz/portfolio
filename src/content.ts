@@ -25,6 +25,20 @@ export interface Agente {
   descricao: string;
 }
 
+export interface Numero {
+  antes?: string;
+  valor: string;
+  depois?: string;
+}
+
+export type Forma = 'circulo' | 'quadrado' | 'hexagono' | 'losango' | 'triangulo';
+
+export interface Camada {
+  nome: string;
+  forma: Forma;
+  itens: string[];
+}
+
 export interface Produto {
   nome: string;
   descricao: string;
@@ -63,14 +77,26 @@ export const abertura = {
   prova: {
     produto: 'MDO Flow',
     status: 'em produção',
-    desde: 'desde jan/2025',
-    numeros: ['5 empresas', 'cerca de 60 usuários por dia'],
+    numeros: [
+      { antes: 'desde', valor: 'jan/2025' },
+      { valor: '5', depois: 'empresas' },
+      { antes: 'cerca de', valor: '60', depois: 'usuários por dia' },
+    ] satisfies Numero[],
   },
   botoes: [
     { rotulo: 'Ver o MDO Flow', url: '#mdo-flow' },
     { rotulo: 'Falar comigo', url: '#contato' },
   ] satisfies Link[],
 };
+
+const funcionalidades = [
+  'Multiusuário',
+  'Múltiplas conexões de WhatsApp',
+  'Envio de mensagens em massa',
+  'Comunicação interna da equipe',
+  'Kanban',
+  'Automação de follow-ups',
+];
 
 export const flow = {
   titulo: 'MDO Flow',
@@ -97,14 +123,6 @@ export const flow = {
     },
   ] satisfies Agente[],
   orquestracao: 'A orquestração é feita em n8n, integrada a LLMs e aos sistemas do cliente.',
-  funcionalidades: [
-    'Multiusuário',
-    'Múltiplas conexões de WhatsApp',
-    'Envio de mensagens em massa',
-    'Comunicação interna da equipe',
-    'Kanban',
-    'Automação de follow-ups',
-  ],
   // PENDENTE: preencha `valor` quando houver o número. Sem `valor`, a métrica não aparece.
   metricas: [
     { rotulo: 'Mensagens processadas por mês' },
@@ -120,6 +138,26 @@ export const flow = {
   ] satisfies Link[],
   // PENDENTE: 3 a 4 capturas anonimizadas em `public/screens/`. Vazio, a galeria não aparece.
   capturas: [] as Captura[],
+};
+
+export const anatomia = {
+  titulo: 'Anatomia do MDO Flow',
+  intro: 'O produto separado em camadas, do canal de conversa aos sistemas do cliente.',
+  camadas: [
+    { nome: 'Canais', forma: 'circulo', itens: ['Múltiplas conexões de WhatsApp'] },
+    {
+      nome: 'Plataforma',
+      forma: 'quadrado',
+      itens: funcionalidades.filter((item) => item !== 'Múltiplas conexões de WhatsApp'),
+    },
+    {
+      nome: 'Agentes de IA',
+      forma: 'hexagono',
+      itens: ['Agente de atendimento e vendas', 'Agente de validação'],
+    },
+    { nome: 'Orquestração', forma: 'losango', itens: ['n8n', 'LLMs'] },
+    { nome: 'Sistemas do cliente', forma: 'triangulo', itens: ['Site e sistemas do cliente'] },
+  ] satisfies Camada[],
 };
 
 export type NoId = 'whatsapp' | 'flow' | 'agente' | 'site';
@@ -216,24 +254,9 @@ export const infra = {
 
 export const contato = {
   titulo: 'Contato',
+  email: { rotulo: 'luizotavioongaro@gmail.com', url: 'mailto:luizotavioongaro@gmail.com' },
   links: [
-    { rotulo: 'luizotavioongaro@gmail.com', url: 'mailto:luizotavioongaro@gmail.com' },
     { rotulo: 'LinkedIn', url: 'https://www.linkedin.com/in/luiizong/' },
     { rotulo: 'GitHub', url: 'https://github.com/lynthz' },
   ] satisfies Link[],
-};
-
-export const site: {
-  titulo: string;
-  texto: string;
-  repositorio: Link;
-  /** PENDENTE */
-  agente?: string;
-  /** PENDENTE */
-  tempo?: string;
-} = {
-  titulo: 'Como este site foi feito',
-  texto:
-    'Este portfólio foi construído com um agente de código a partir de um prompt mestre, com auditoria e revisão humanas.',
-  repositorio: { rotulo: 'Repositório público', url: 'https://github.com/lynthz/portfolio' },
 };

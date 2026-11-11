@@ -1,10 +1,22 @@
 .grade {
   display: grid;
-  gap: 2rem 3rem;
+  gap: 2rem 4rem;
 }
 
 .figura {
   order: -1;
+}
+
+@media (min-width: 48rem) {
+  .figura {
+    display: grid;
+    place-items: center;
+    aspect-ratio: 5 / 4;
+  }
+
+  .figura > svg {
+    height: 100%;
+  }
 }
 
 .passos {
@@ -19,26 +31,40 @@
 
 .passo {
   display: grid;
-  grid-template-columns: 2rem 1fr;
+  grid-template-columns: 3.25rem 1fr;
+  align-items: baseline;
   width: 100%;
   padding: 1.25rem 0.75rem;
   border: 0;
   border-left: 3px solid transparent;
   background: none;
-  color: inherit;
+  color: var(--texto-2);
   font: inherit;
+  font-size: 1.125rem;
   text-align: left;
   cursor: pointer;
+  transition:
+    color 0.3s,
+    background-color 0.3s,
+    border-color 0.3s;
 }
 
 .passo::before {
-  color: var(--texto-2);
-  font-family: var(--mono);
-  content: counter(passo);
+  font-size: 2rem;
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  line-height: 1;
+  content: counter(passo, decimal-leading-zero);
+}
+
+.passo:hover {
+  color: var(--texto);
 }
 
 .passo[aria-current='step'] {
   border-left-color: var(--ambar);
+  background: var(--painel);
+  color: var(--texto);
   font-weight: 600;
 }
 
@@ -48,17 +74,17 @@
 
 @media (min-width: 60rem) {
   .grade {
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr 1.1fr;
     align-items: start;
   }
 
   .figura {
     position: sticky;
-    top: 2rem;
+    top: 1.5rem;
     order: 0;
   }
 
   .passo {
-    padding-block: 1.9rem;
+    padding-block: 2.5rem;
   }
 }
