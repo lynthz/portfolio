@@ -1,37 +1,78 @@
+@property --trilho {
+  syntax: '<number>';
+  inherits: false;
+  initial-value: 1;
+}
+
 .subtitulo {
   margin-bottom: 0.5rem;
-  font-size: 1.1875rem;
-  font-weight: 650;
+  font-size: 1.35rem;
+  font-weight: 700;
+}
+
+.texto {
+  color: var(--texto-2);
 }
 
 .etapas {
+  position: relative;
   display: grid;
-  margin-top: 1.5rem;
-  border-top: 2px solid var(--texto);
-  border-bottom: 1px solid var(--fio);
+  gap: 2rem;
+  margin-top: 2.5rem;
   counter-reset: etapa;
 }
 
+/* Trilho que liga as estações. Vertical no celular, horizontal a partir de 44rem. */
+.etapas::before {
+  position: absolute;
+  top: 0.75rem;
+  bottom: 0.75rem;
+  left: 0.7rem;
+  width: 2px;
+  background: var(--texto);
+  content: '';
+  transform: scaleY(var(--trilho));
+  transform-origin: top;
+}
+
 .etapas li {
-  padding-block: 1rem;
+  position: relative;
+  padding-left: 2.75rem;
   counter-increment: etapa;
 }
 
-.etapas li + li {
-  border-top: 1px solid var(--fio);
+.estacao {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: grid;
+  place-items: center;
+  width: 1.5rem;
+  height: 1.5rem;
+  border: 2px solid var(--texto);
+  border-radius: 50%;
+  background: var(--fundo);
+}
+
+.estacao::after {
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 50%;
+  background: var(--texto);
+  content: '';
 }
 
 .etapas li::before {
   color: var(--texto-2);
   font-family: var(--mono);
-  font-size: 0.875rem;
-  content: counter(etapa);
+  font-size: 0.8125rem;
+  content: counter(etapa, decimal-leading-zero);
 }
 
 .etapas h4 {
-  margin-block: 0.25rem 0.4rem;
-  font-size: 1.0625rem;
-  font-weight: 650;
+  margin-block: 0.2rem 0.4rem;
+  font-size: 1.2rem;
+  font-weight: 700;
 }
 
 .etapas p {
@@ -43,7 +84,9 @@
 .blocos {
   display: grid;
   gap: 2rem 3rem;
-  margin-top: 2.5rem;
+  margin-top: 3.5rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--traco);
 }
 
 @media (min-width: 44rem) {
@@ -51,20 +94,24 @@
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 
-  .blocos {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+  .etapas::before {
+    top: 0.7rem;
+    right: 0;
+    bottom: auto;
+    left: 0;
+    width: auto;
+    height: 2px;
+    transform: scaleX(var(--trilho));
+    transform-origin: left;
   }
 
   .etapas li {
-    padding-inline: 1.25rem;
-  }
-
-  .etapas li:first-child {
+    padding-top: 2.5rem;
     padding-left: 0;
+    padding-right: 1rem;
   }
 
-  .etapas li + li {
-    border-top: 0;
-    border-left: 1px solid var(--fio);
+  .blocos {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
