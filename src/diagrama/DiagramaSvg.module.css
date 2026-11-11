@@ -1,0 +1,66 @@
+.diagrama {
+  display: block;
+  width: 100%;
+  max-width: 30rem;
+  height: auto;
+  margin-inline: auto;
+}
+
+.divisoria {
+  stroke: var(--fio);
+  stroke-dasharray: 2 5;
+}
+
+.plano {
+  fill: var(--texto-2);
+  font-family: var(--titulos);
+  font-size: 13px;
+}
+
+.aresta,
+.transito {
+  fill: none;
+  stroke: var(--traco);
+  stroke-width: 1.5;
+}
+
+.transito {
+  stroke: var(--ambar);
+  stroke-width: 2.5;
+}
+
+.seta {
+  fill: var(--ambar);
+}
+
+.no rect,
+.noAtivo rect {
+  fill: var(--fundo);
+  stroke: var(--traco);
+  stroke-width: 1.5;
+}
+
+.noAtivo rect {
+  stroke: var(--ambar);
+  stroke-width: 2.5;
+}
+
+.no text,
+.noAtivo text {
+  fill: var(--texto);
+  font-family: var(--mono);
+  font-size: 14px;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .transito {
+    stroke-dasharray: 7 5;
+    animation: transito 0.9s linear infinite;
+  }
+}
+
+@keyframes transito {
+  to {
+    stroke-dashoffset: -12;
+  }
+}
