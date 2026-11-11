@@ -1,27 +1,32 @@
 .escala {
   max-width: 40em;
-  margin-top: 1rem;
+  margin-top: 1.25rem;
   color: var(--texto-2);
   font-size: 0.9375rem;
 }
 
 .produtos {
-  margin-top: 2rem;
-  border-bottom: 1px solid var(--fio);
-  font-size: 0.9375rem;
+  display: grid;
+  gap: 0 2.5rem;
+  margin-top: 2.5rem;
 }
 
 .produto {
   display: grid;
-  gap: 0.2rem 1.5rem;
-  padding-block: 0.8rem;
-  border-top: 1px solid var(--fio);
+  gap: 0.35rem;
+  padding-block: 1.1rem 1.4rem;
+  border-top: 2px solid var(--texto);
+  font-size: 0.9375rem;
 }
 
 .produto h3 {
-  font-size: 1rem;
-  font-weight: 650;
-  line-height: 1.5;
+  font-size: 1.3rem;
+  font-weight: 700;
+  letter-spacing: -0.015em;
+}
+
+.produto p {
+  color: var(--texto-2);
 }
 
 .stack {
@@ -40,7 +45,7 @@
 }
 
 @media (min-width: 40rem) {
-  .produto {
-    grid-template-columns: 9rem 1fr;
+  .produtos {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }

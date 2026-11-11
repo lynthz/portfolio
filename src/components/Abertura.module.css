@@ -1,7 +1,74 @@
 .abertura {
+  position: relative;
+  overflow: hidden;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .abertura {
+    animation: deriva 60s linear infinite;
+  }
+
+  .texto > *,
+  .figura {
+    animation: subir 0.9s var(--suave) both;
+  }
+
+  .texto > :nth-child(2) {
+    animation-delay: 0.06s;
+  }
+
+  .texto > :nth-child(3) {
+    animation-delay: 0.12s;
+  }
+
+  .texto > :nth-child(4) {
+    animation-delay: 0.18s;
+  }
+
+  .texto > :nth-child(5) {
+    animation-delay: 0.26s;
+  }
+
+  .texto > :nth-child(6) {
+    animation-delay: 0.34s;
+  }
+
+  .figura {
+    animation-delay: 0.2s;
+  }
+
+  .numeros li::before {
+    animation: tracar 1.1s var(--suave) 0.4s both;
+  }
+}
+
+/* Só transform: o texto aparece pintado desde o primeiro quadro, então o LCP não espera. */
+@keyframes subir {
+  from {
+    transform: translateY(1.25rem);
+  }
+}
+
+@keyframes tracar {
+  from {
+    transform: scaleX(0);
+  }
+}
+
+@keyframes deriva {
+  to {
+    background-position:
+      120px 120px,
+      120px 120px,
+      24px 24px,
+      24px 24px;
+  }
+}
+
+.interior {
   max-width: var(--largura);
   margin-inline: auto;
-  padding: 1.25rem var(--margem) clamp(2.5rem, 6vw, 4rem);
+  padding: 0.75rem var(--margem) clamp(2.5rem, 6vh, 4rem);
 }
 
 .nav ul {
@@ -23,105 +90,170 @@
   text-decoration: underline;
 }
 
+.grade {
+  display: grid;
+  gap: 2rem 3rem;
+  align-items: center;
+  margin-top: clamp(1.5rem, 5vh, 3rem);
+}
+
 .nome {
-  margin-top: clamp(1.5rem, 6vh, 4rem);
-  font-size: clamp(2.6rem, 7vw, 5rem);
+  font-size: clamp(2.75rem, 7.5vw, 5.25rem);
   font-weight: 800;
-  letter-spacing: -0.035em;
+  letter-spacing: -0.045em;
+  line-height: 0.95;
 }
 
 .cargo {
-  margin-top: 0.75rem;
-  font-size: 1.25rem;
-  font-weight: 600;
+  margin-top: 1rem;
+  font-size: 1.3rem;
+  font-weight: 650;
 }
 
 .formacao {
-  margin-top: 0.35rem;
+  margin-top: 0.3rem;
   color: var(--texto-2);
   font-family: var(--mono);
-  font-size: 0.875rem;
+  font-size: 0.8125rem;
 }
 
 .frase {
-  max-width: 26em;
-  margin-top: 1.75rem;
-  font-size: clamp(1.35rem, 2.6vw, 1.9rem);
+  max-width: 24em;
+  margin-top: 1.5rem;
+  font-size: clamp(1.3rem, 2.3vw, 1.7rem);
   line-height: 1.25;
 }
 
 .prova {
-  margin-top: 2rem;
-  border-top: 1px solid var(--texto);
-  border-bottom: 1px solid var(--fio);
-  font-family: var(--mono);
-  font-size: 0.9375rem;
+  margin-top: 1.75rem;
+  padding: 1rem 1.25rem 1.1rem;
+  border: 1px solid var(--traco);
+  background: var(--painel);
 }
 
-.prova li {
-  padding-block: 0.7rem;
-}
-
-.prova li + li {
-  border-top: 1px solid var(--fio);
-}
-
-.prova .produto {
-  font-family: var(--titulos);
-  font-size: 1.125rem;
+.produto {
   font-weight: 700;
 }
 
 .status {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin-left: 0.5rem;
   color: var(--verde);
+  font-family: var(--mono);
+  font-size: 0.8125rem;
   font-weight: 500;
+}
+
+.status::before {
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 50%;
+  background: currentcolor;
+  box-shadow: 0 0 0 3px color-mix(in srgb, currentcolor 30%, transparent);
+  content: '';
+}
+
+.numeros {
+  display: grid;
+  grid-template-columns: repeat(3, auto);
+  gap: 0.25rem 1.5rem;
+  justify-content: start;
+  margin-top: 0.6rem;
+}
+
+.numeros li {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  padding-top: 0.5rem;
+}
+
+.numeros li::before {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  height: 2px;
+  background: var(--texto);
+  content: '';
+  transform-origin: left;
+}
+
+.valor {
+  order: 1;
+  font-size: clamp(1.9rem, 3.6vw, 2.75rem);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1.05;
+}
+
+.legenda {
+  order: 2;
+  color: var(--texto-2);
+  font-family: var(--mono);
+  font-size: 0.75rem;
+}
+
+.numeros li > .legenda:first-child {
+  order: 0;
 }
 
 .botoes {
   display: flex;
   flex-wrap: wrap;
   gap: 0.75rem 1rem;
-  margin-top: 1.75rem;
+  margin-top: 1.5rem;
 }
 
 .botoes a {
   display: inline-block;
-  padding: 0.75rem 1.25rem;
-  border: 1.5px solid var(--cobalto);
-  border-radius: 2px;
-  font-weight: 600;
+  padding: 0.8rem 1.4rem;
+  border: 1.5px solid var(--texto);
+  color: var(--texto);
+  font-weight: 650;
   text-decoration: none;
+  transition:
+    transform 0.2s var(--suave),
+    box-shadow 0.2s var(--suave);
 }
 
 .botoes li:first-child a {
-  background: var(--cobalto);
+  background: var(--texto);
   color: var(--fundo);
 }
 
 .botoes a:hover {
-  text-decoration: underline;
+  box-shadow: 4px 4px 0 var(--traco);
+  transform: translate(-2px, -2px);
 }
 
-@media (min-width: 48rem) {
-  .nav ul {
-    justify-content: flex-end;
+.figura {
+  display: none;
+}
+
+@media (max-width: 30rem) {
+  .numeros {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (min-width: 60rem) {
+  .grade {
+    grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
   }
 
-  .prova {
-    display: flex;
-    align-items: baseline;
+  .figura {
+    /* Mesma caixa para o SVG e para o canvas: a troca não desloca o layout. */
+    display: grid;
+    place-items: center;
+    width: calc(100% + var(--margem));
+    aspect-ratio: 5 / 4;
+    margin-right: calc(var(--margem) * -1);
   }
 
-  .prova li {
-    padding: 0.9rem 1.5rem;
-  }
-
-  .prova li:first-child {
-    padding-left: 0;
-  }
-
-  .prova li + li {
-    border-top: 0;
-    border-left: 1px solid var(--fio);
+  .figura > svg {
+    height: 100%;
   }
 }

@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { percurso } from '../content';
-import { DiagramaSvg } from '../diagrama/DiagramaSvg';
+import { Diagrama } from '../diagrama/Diagrama';
 import s from './PercursoAgente.module.css';
 import { Secao } from './Secao';
 
@@ -48,7 +48,7 @@ export function PercursoAgente() {
           ))}
         </ol>
         <div className={s.figura}>
-          <DiagramaSvg ativo={ativo} />
+          <Diagrama ativo={ativo} modo="percurso" />
         </div>
       </div>
     </Secao>

@@ -1,5 +1,5 @@
 /* Paleta "planta técnica". Âmbar: só mensagem em trânsito e passo ativo.
-   Verde: só "em produção". Fio: só divisórias (contraste baixo de propósito). */
+   Verde: só "em produção". Fio: só divisórias e grade (contraste baixo de propósito). */
 :root {
   color-scheme: light dark;
   --fundo: #edf1f5;
@@ -10,24 +10,56 @@
   --cobalto: #1f4fd1;
   --ambar: #8f5200;
   --verde: #1e7a4c;
+  --painel: #ffffff;
 
   --titulos: 'Bricolage Grotesque Variable', system-ui, sans-serif;
   --mono: 'IBM Plex Mono', ui-monospace, 'Cascadia Mono', monospace;
   --margem: clamp(1rem, 4vw, 3rem);
-  --largura: 72rem;
+  --largura: 76rem;
+  --suave: cubic-bezier(0.2, 0.7, 0.2, 1);
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --fundo: #16264a;
+    --fundo: #0e1830;
     --texto: #e6ecf5;
     --texto-2: #b8c0cf;
-    --fio: #3a4d75;
-    --traco: #939db1;
+    --fio: #2c3a5c;
+    --traco: #8a95ab;
     --cobalto: #9db8ff;
     --ambar: #ffb84d;
     --verde: #6fd3a0;
+    --painel: #15223f;
   }
+}
+
+/* Faixa azul-cianotipia, igual nos dois temas. Os componentes dentro dela herdam os tokens. */
+[data-faixa] {
+  --fundo: #12398a;
+  --texto: #f3f6fb;
+  --texto-2: #c3d0ea;
+  --fio: #3a5fae;
+  --traco: #8ea6d6;
+  --cobalto: #d6e3ff;
+  --ambar: #ffc266;
+  --verde: #8be8b5;
+  --painel: #0f3075;
+
+  --grade-fina: color-mix(in srgb, var(--fio) 45%, transparent);
+  --grade-grossa: color-mix(in srgb, var(--fio) 90%, transparent);
+  background-color: var(--fundo);
+  /* Grade de planta técnica: linhas de 1 px a cada 24 px e a cada 120 px. */
+  background-image:
+    linear-gradient(var(--grade-grossa) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grade-grossa) 1px, transparent 1px),
+    linear-gradient(var(--grade-fina) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grade-fina) 1px, transparent 1px);
+  background-size:
+    120px 120px,
+    120px 120px,
+    24px 24px,
+    24px 24px;
+  color: var(--texto);
 }
 
 *,
@@ -49,6 +81,7 @@ html {
 
 body {
   margin: 0;
+  overflow-x: clip;
   background: var(--fundo);
   color: var(--texto);
   font-family: var(--titulos);

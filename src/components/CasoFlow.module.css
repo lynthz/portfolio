@@ -1,55 +1,78 @@
 .duas {
   display: grid;
-  gap: 2rem 3rem;
+  gap: 2.5rem 4rem;
+  margin-top: 1rem;
 }
 
 .grupo {
-  margin-top: 3rem;
+  margin-top: 4rem;
 }
 
 .duas h3,
 .grupo h3 {
-  margin-bottom: 0.6rem;
-  font-size: 1.0625rem;
-  font-weight: 650;
+  margin-bottom: 0.75rem;
+  color: var(--texto-2);
+  font-family: var(--mono);
+  font-size: 0.875rem;
+  font-weight: 500;
 }
 
 .duas h3.seguinte {
-  margin-top: 1.75rem;
+  margin-top: 2rem;
 }
 
 .duas p {
-  max-width: 36em;
+  max-width: 34em;
+}
+
+.problema {
+  font-size: clamp(1.2rem, 2vw, 1.45rem);
+  line-height: 1.35;
+}
+
+.uso dd {
+  font-size: 1.2rem;
 }
 
 .agentes {
   display: grid;
-  gap: 1.5rem 3rem;
+  gap: 1.25rem;
 }
 
 .agentes li {
-  padding-top: 1rem;
-  border-top: 2px solid var(--texto);
+  position: relative;
+  padding: 1.5rem 1.5rem 1.75rem;
+  border: 1px solid var(--traco);
+  border-top: 4px solid var(--cobalto);
+  background: var(--painel);
+  transition:
+    transform 0.25s var(--suave),
+    box-shadow 0.25s var(--suave);
+}
+
+.agentes li:hover {
+  box-shadow: 6px 6px 0 var(--cobalto);
+  transform: translate(-3px, -3px);
+}
+
+.icone {
+  width: 2rem;
+  margin-bottom: 0.9rem;
+  fill: none;
+  stroke: var(--cobalto);
+  stroke-width: 2.5;
 }
 
 .agentes h4 {
-  margin-bottom: 0.4rem;
-  font-size: 1.1875rem;
-  font-weight: 650;
+  margin-bottom: 0.5rem;
+  font-size: 1.4rem;
+  font-weight: 700;
+  letter-spacing: -0.015em;
 }
 
 .orquestracao {
   margin-top: 1.25rem;
   color: var(--texto-2);
-}
-
-.funcionalidades {
-  border-bottom: 1px solid var(--fio);
-}
-
-.funcionalidades li {
-  padding-block: 0.45rem;
-  border-top: 1px solid var(--fio);
 }
 
 .stack,
@@ -65,12 +88,14 @@
 }
 
 .stack li {
-  padding: 0.15rem 0.6rem;
+  padding: 0.3rem 0.75rem;
   border: 1px solid var(--traco);
+  background: var(--painel);
 }
 
 .links {
   gap: 0.5rem 2rem;
+  font-size: 1rem;
 }
 
 .galeria {
