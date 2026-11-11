@@ -25,11 +25,6 @@ export interface Agente {
   descricao: string;
 }
 
-export interface Passo {
-  titulo: string;
-  descricao: string;
-}
-
 export interface Produto {
   nome: string;
   descricao: string;
@@ -65,7 +60,12 @@ export const navegacao: Link[] = [
 ];
 
 export const abertura = {
-  prova: ['MDO Flow', 'em produção desde jan/2025', '5 empresas', 'cerca de 60 usuários por dia'],
+  prova: {
+    produto: 'MDO Flow',
+    status: 'em produção',
+    desde: 'desde jan/2025',
+    numeros: ['5 empresas', 'cerca de 60 usuários por dia'],
+  },
   botoes: [
     { rotulo: 'Ver o MDO Flow', url: '#mdo-flow' },
     { rotulo: 'Falar comigo', url: '#contato' },
@@ -122,31 +122,27 @@ export const flow = {
   capturas: [] as Captura[],
 };
 
+export type NoId = 'whatsapp' | 'flow' | 'agente' | 'site';
+
 export const percurso = {
   titulo: 'Como o agente de vendas funciona',
-  intro: 'O percurso de uma conversa, do WhatsApp ao CRM.',
+  intro: 'O percurso de uma conversa, da mensagem no WhatsApp à compra no site do cliente.',
+  /** Planos do diagrama, da frente para o fundo. */
+  planos: ['Conversa', 'MDO Flow', 'Site do cliente'],
+  nos: {
+    whatsapp: 'WhatsApp',
+    flow: 'MDO Flow',
+    agente: 'Agente de atendimento e vendas (n8n)',
+    site: 'Site do cliente',
+  } satisfies Record<NoId, string>,
+  /** A ordem acompanha `caminhos` em `src/diagrama/grafo.ts`. */
   passos: [
-    {
-      titulo: 'Mensagem do cliente no WhatsApp',
-      descricao: 'O cliente descreve o que procura.',
-    },
-    {
-      titulo: 'O agente interpreta o pedido',
-      descricao: 'O agente de atendimento e vendas entende o que a pessoa descreveu.',
-    },
-    {
-      titulo: 'Consulta ao catálogo',
-      descricao: 'O agente encontra no catálogo o produto certo para o pedido.',
-    },
-    {
-      titulo: 'Resposta com o link do produto',
-      descricao: 'O cliente recebe no WhatsApp o link do produto no site, para comprar.',
-    },
-    {
-      titulo: 'Operação registrada e validada no CRM',
-      descricao: 'A operação fica registrada no CRM e o agente de validação confere.',
-    },
-  ] satisfies Passo[],
+    'A pessoa manda mensagem no WhatsApp descrevendo o que procura.',
+    'A mensagem chega ao MDO Flow, que aciona o agente de atendimento e vendas.',
+    'O agente interpreta o pedido e encontra o produto correspondente no site do cliente.',
+    'O agente responde no WhatsApp com o link do produto.',
+    'A pessoa compra pelo link, no site do cliente.',
+  ],
 };
 
 export const outros = {
