@@ -1,0 +1,127 @@
+.abertura {
+  max-width: var(--largura);
+  margin-inline: auto;
+  padding: 1.25rem var(--margem) clamp(2.5rem, 6vw, 4rem);
+}
+
+.nav ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0 1.75rem;
+  font-family: var(--mono);
+  font-size: 0.875rem;
+}
+
+.nav a {
+  display: inline-block;
+  padding-block: 0.5rem;
+  color: var(--texto);
+  text-decoration: none;
+}
+
+.nav a:hover {
+  text-decoration: underline;
+}
+
+.nome {
+  margin-top: clamp(1.5rem, 6vh, 4rem);
+  font-size: clamp(2.6rem, 7vw, 5rem);
+  font-weight: 800;
+  letter-spacing: -0.035em;
+}
+
+.cargo {
+  margin-top: 0.75rem;
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
+.formacao {
+  margin-top: 0.35rem;
+  color: var(--texto-2);
+  font-family: var(--mono);
+  font-size: 0.875rem;
+}
+
+.frase {
+  max-width: 26em;
+  margin-top: 1.75rem;
+  font-size: clamp(1.35rem, 2.6vw, 1.9rem);
+  line-height: 1.25;
+}
+
+.prova {
+  margin-top: 2rem;
+  border-top: 1px solid var(--texto);
+  border-bottom: 1px solid var(--fio);
+  font-family: var(--mono);
+  font-size: 0.9375rem;
+}
+
+.prova li {
+  padding-block: 0.7rem;
+}
+
+.prova li + li {
+  border-top: 1px solid var(--fio);
+}
+
+.prova .produto {
+  font-family: var(--titulos);
+  font-size: 1.125rem;
+  font-weight: 700;
+}
+
+.status {
+  color: var(--verde);
+  font-weight: 500;
+}
+
+.botoes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem 1rem;
+  margin-top: 1.75rem;
+}
+
+.botoes a {
+  display: inline-block;
+  padding: 0.75rem 1.25rem;
+  border: 1.5px solid var(--cobalto);
+  border-radius: 2px;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.botoes li:first-child a {
+  background: var(--cobalto);
+  color: var(--fundo);
+}
+
+.botoes a:hover {
+  text-decoration: underline;
+}
+
+@media (min-width: 48rem) {
+  .nav ul {
+    justify-content: flex-end;
+  }
+
+  .prova {
+    display: flex;
+    align-items: baseline;
+  }
+
+  .prova li {
+    padding: 0.9rem 1.5rem;
+  }
+
+  .prova li:first-child {
+    padding-left: 0;
+  }
+
+  .prova li + li {
+    border-top: 0;
+    border-left: 1px solid var(--fio);
+  }
+}

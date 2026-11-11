@@ -1,9 +1,11 @@
 import { abertura, navegacao, pessoa } from '../content';
+import s from './Abertura.module.css';
 
 export function Abertura() {
+  const { prova } = abertura;
   return (
-    <header>
-      <nav aria-label="Seções">
+    <header className={s.abertura}>
+      <nav aria-label="Seções" className={s.nav}>
         <ul>
           {navegacao.map((item) => (
             <li key={item.url}>
@@ -12,16 +14,20 @@ export function Abertura() {
           ))}
         </ul>
       </nav>
-      <h1>{pessoa.nome}</h1>
-      <p>{pessoa.cargo}</p>
-      <p>{pessoa.formacao}</p>
-      <p>{pessoa.frase}</p>
-      <ul aria-label="Prova">
-        {abertura.prova.map((item) => (
-          <li key={item}>{item}</li>
+      <h1 className={s.nome}>{pessoa.nome}</h1>
+      <p className={s.cargo}>{pessoa.cargo}</p>
+      <p className={s.formacao}>{pessoa.formacao}</p>
+      <p className={s.frase}>{pessoa.frase}</p>
+      <ul className={s.prova}>
+        <li className={s.produto}>{prova.produto}</li>
+        <li>
+          <span className={s.status}>{prova.status}</span> {prova.desde}
+        </li>
+        {prova.numeros.map((numero) => (
+          <li key={numero}>{numero}</li>
         ))}
       </ul>
-      <ul>
+      <ul className={s.botoes}>
         {abertura.botoes.map((botao) => (
           <li key={botao.url}>
             <a href={botao.url}>{botao.rotulo}</a>

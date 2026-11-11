@@ -1,15 +1,15 @@
 import { infra } from '../content';
+import s from './Infra.module.css';
+import { Secao } from './Secao';
 
 export function Infra() {
   return (
-    <section id="infraestrutura" aria-labelledby="infraestrutura-titulo">
-      <h2 id="infraestrutura-titulo">{infra.titulo}</h2>
-      <p>{infra.intro}</p>
-      <ul>
+    <Secao id="infraestrutura" titulo={infra.titulo} intro={infra.intro}>
+      <ul className={s.itens}>
         {infra.itens.map((item) => (
           <li key={item}>{item}</li>
         ))}
       </ul>
-    </section>
+    </Secao>
   );
 }

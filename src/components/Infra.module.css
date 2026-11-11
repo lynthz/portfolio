@@ -1,0 +1,8 @@
+.itens {
+  border-bottom: 1px solid var(--fio);
+}
+
+.itens li {
+  padding-block: 0.6rem;
+  border-top: 1px solid var(--fio);
+}

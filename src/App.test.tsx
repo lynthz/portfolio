@@ -4,7 +4,7 @@ import { App } from './App';
 import { flow } from './content';
 
 const html = renderToStaticMarkup(<App />);
-const texto = html.replace(/<[^>]+>/g, ' ');
+const texto = html.replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ');
 
 test('um único h1', () => {
   expect(html.match(/<h1/g)).toHaveLength(1);

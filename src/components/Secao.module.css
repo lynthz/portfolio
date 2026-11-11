@@ -1,0 +1,42 @@
+.secao {
+  border-top: 1px solid var(--fio);
+  padding-block: clamp(3rem, 7vw, 5rem);
+}
+
+.interior {
+  display: grid;
+  gap: 1.75rem 3rem;
+  max-width: var(--largura);
+  margin-inline: auto;
+  padding-inline: var(--margem);
+}
+
+.titulo {
+  font-size: clamp(1.6rem, 3vw, 2.1rem);
+  font-weight: 650;
+  letter-spacing: -0.02em;
+}
+
+.intro {
+  margin-top: 0.75rem;
+  max-width: 34em;
+  color: var(--texto-2);
+}
+
+[data-variante='destaque'] .titulo {
+  font-size: clamp(2.4rem, 6vw, 4rem);
+  font-weight: 800;
+  letter-spacing: -0.035em;
+}
+
+[data-variante='destaque'] .intro {
+  color: var(--texto);
+  font-size: clamp(1.15rem, 2vw, 1.35rem);
+  line-height: 1.35;
+}
+
+@media (min-width: 60rem) {
+  [data-variante='ficha'] {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 2.2fr);
+  }
+}
